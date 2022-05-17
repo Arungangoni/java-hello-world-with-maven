@@ -17,6 +17,12 @@ pipeline{
                sh 'mvn package'
             }
         }
+        stage(deploy){
+            steps{
+                sshagent(['deploy_user']){
+                    sh "scp -o StrictHostKeyChecking=no /job1/target/jb-hello-world-maven-0.4.0.jar ec2-user@3.88.129.66:/opt/tomcat/apache-tomcat-9.0.48/webapps"
+                }
+      }
         
     }
 }
