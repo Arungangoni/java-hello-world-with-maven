@@ -1,9 +1,9 @@
 pipeline{
     agent any
     stages{
-        stage('checkout'){
+        stage('Submit stack'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/sreenivas449/java-hello-world-with-maven.git']]])
+                sh "aws cloudfromation create-stack --stack-name s3bucket --templatebody file://
             }
         }
 }
